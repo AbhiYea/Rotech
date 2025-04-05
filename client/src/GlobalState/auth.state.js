@@ -1,6 +1,8 @@
 import {create} from "zustand"
 import { axiosInstance } from "../utils/axios";
 import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
+
 const useAuthStore=create((set)=>({
     authUser:null,
     isSigningUp:false,
@@ -42,21 +44,24 @@ const useAuthStore=create((set)=>({
 
     logout:async ()=>{
         try {
-            const res=axiosInstance.post("/auth/logout");
+            const res=await axiosInstance.post("/logout");
+            console.log("hi")
             set({authUser:null})
             toast.success("Logged out Successfully")
+            
         } catch (error) {
             toast.error(error.response.data.message)
         }
 
     },
     check:async()=>{
-        const res=axiosInstance("/check")
-        if(res.message==="Done"){
+        const res=await axiosInstance("/check")
+        console.log(res)
+        if(res.data.message==="Done"){
             set({authUser:true})
         }
         else{
-            set({authUser:true})
+            set({authUser:false})
         }
 
     }

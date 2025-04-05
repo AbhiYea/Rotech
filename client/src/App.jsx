@@ -22,9 +22,10 @@ import About from "./Pages/About.jsx"
 export default function App(){
   const {authUser,check}=useAuthStore();
   useEffect(()=>{
+    console.log("check")
     check();
   },[])
-
+  console.log("Auth",authUser)
   return (
     <>
 

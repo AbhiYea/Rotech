@@ -10,19 +10,22 @@ export default function Login(){
         email:"",
         password:""
     })
+    const [aaha,setAaha]=useState(false)
 
     const navigate = useNavigate();
 
     const handleClick = () => {
+        setAaha(false)
         navigate("/signup");
     };
     const {login,isLoggingIn}=useAuthStore();
 
-
+    const handleAaha=()=>{
+        setAaha(true)
+    }
     const handleSubmit= async (e)=>{
         e.preventDefault();
-        console.log("hi")
-        login(formData)
+        if(aaha){login(formData)}
     }
     return (
         <div class="flex justify-center items-center min-h- main-login bg-gray-900">
@@ -35,7 +38,7 @@ export default function Login(){
             </div>
         
             {/*form*/}
-            <form class="space-y-4 w-72" onSubmit={handleSubmit}>
+            <form class="space-y-4 w-72 aaha" onSubmit={handleSubmit}>
                 <div class="rounded-xl border border-gray-600 bg-gray-700 px-4 py-2">
                 <input
                     type="text"
@@ -60,6 +63,9 @@ export default function Login(){
                 <button
                     type="submit"
                     class="w-full rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 transition duration-300"
+                    onClick={()=>{
+                        handleAaha()
+                    }}
                 >
                     Log In
                 </button>
