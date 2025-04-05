@@ -15,7 +15,6 @@ export default function App(){
 
   return (
     <>
-    <Home />
     <Routes>
       <Route path="/home" element={authUser ?<Home/>:<Navigate to="/login" />} ></Route>
       <Route path="/login" element={<Login />} />

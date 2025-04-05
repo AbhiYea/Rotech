@@ -1,3 +1,5 @@
+import logo from "../Assets/login.png"
+
 export default function Signup(){
     return (
         <div class="flex justify-center items-center min-h-screen bg-gray-900">
@@ -5,7 +7,7 @@ export default function Signup(){
             
             {/*Image*/}
             <div class="flex flex-col items-center justify-center">
-                <img src="0d4e920f-0791-449c-ba19-f58992b09fe1.png" alt="Logo" class="w-20 h-20 object-contain" />
+                <img src={logo} alt="Logo" class="w-20 h-20 object-contain" />
                 <h2 class="text-2xl font-medium text-white ">Sign Up</h2>
             </div>
         

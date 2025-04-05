@@ -19,7 +19,7 @@ export default function Header() {
           <div class="flex items-center lg:order-2 space-x-2">
             <a
               href="#"
-              class="text-sm px-4 py-2 rounded-lg font-medium bg-blue-600 text-white hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-300 transition"
+              class="text-sm px-4 py-2 rounded-lg font-medium bg-blue-600 text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-gray-300 transition"
             >
               Log In
             </a>
