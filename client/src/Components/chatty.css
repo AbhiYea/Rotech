@@ -3,9 +3,57 @@
     width: 80vw;
     border: 2px solid gray;
     border-radius: 10px;
-    margin-left: 145px;
+    margin-left: 105px;
     height: 80vh;
 }
 input{
     color: #1E1E2F;
 }
+.Butto{
+    position: absolute;
+    top: 40vh;
+    left: 90.3vw;
+    height: 100px;
+    width: 100px;
+    background-color: rgb(33, 46, 63);
+    border-radius: 30%;
+   
+}
+.Butt{
+    height: 100px;
+    width: 100px;
+}
+
+.Butto:focus{
+    animation-name: neonBreath;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+@keyframes neonBreath {
+    0% {
+      box-shadow:
+        0 0 5px #0ff,
+        0 0 10px #0ff,
+        0 0 20px #0ff,
+        0 0 40px #0ff;
+      transform: scale(1);
+    }
+    50% {
+      box-shadow:
+        0 0 15px #fb923c,
+        0 0 30px #fb923c,
+        0 0 60px #fb923c,
+        0 0 100px #fb923c;
+      transform: scale(1.02);
+    }
+    100% {
+      box-shadow:
+        0 0 5px #0ff,
+        0 0 10px #0ff,
+        0 0 20px #0ff,
+        0 0 40px #0ff;
+      transform: scale(1);
+    }
+  }

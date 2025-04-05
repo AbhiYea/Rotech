@@ -1,10 +1,42 @@
 import { useState, useRef, useEffect } from "react";
 import { GoogleGenAI } from "@google/genai";
 import "./chatty.css";
-
+import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
+import {AudioLines} from "lucide-react"
 const ai = new GoogleGenAI({ apiKey: "AIzaSyD78X8dLdP1G9QWCuEcupZtWfgNWEhO7YU" });
 
 export default function ChatBox() {
+   
+    
+      const {
+        transcript,
+        listening,
+        resetTranscript,
+        browserSupportsSpeechRecognition
+      } = useSpeechRecognition();
+    
+      useEffect(() => {
+        if (!browserSupportsSpeechRecognition) {
+          console.error("Your browser doesn't support speech recognition.");
+          return;
+        }
+      }, []);
+    
+      useEffect(() => {
+        if (transcript) {
+          setInput(transcript);
+        }
+      }, [transcript]);
+    
+      const handleHear = () => {
+        resetTranscript();
+        SpeechRecognition.startListening({ continuous: true });
+      };
+    
+      const stopHear = () => {
+        SpeechRecognition.stopListening();
+      };
+
   const [messages, setMessages] = useState([
     { sender: "bot", text: "Hey there 👋, how can I help you today?" },
   ]);
@@ -85,6 +117,8 @@ export default function ChatBox() {
           Send
         </button>
       </div>
+
+      <button className="Butto" onClick={handleHear} ><AudioLines className="Butt" /></button>
     </div>
   );
 }

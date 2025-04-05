@@ -15,33 +15,22 @@ import { useEffect, useState } from "react"
 import Footer from "./Components/Footer/Footer.jsx"
 import ChatBox from "./Components/Chatty.jsx"
 import { GoogleGenAI } from '@google/genai';
+import { Toaster } from "react-hot-toast"
+import useAuthStore from "./GlobalState/auth.state.js"
+
 export default function App(){
-  const {authUser}=useAuthState()
-
-  const [response, setResponse] = useState("Loading AI response...");
-  useEffect(() => {
-    const runAI = async () => {
-      const ai = new GoogleGenAI({ apiKey: 'AIzaSyD78X8dLdP1G9QWCuEcupZtWfgNWEhO7YU' });
-
-      const response = await ai.models.generateContent({
-        model: 'gemini-2.0-flash',
-        contents: 'Explain how AI works',
-      });
-
-      console.log(response.text); // It might be response.response.text depending on SDK version
-    };
-
-    runAI();
-  }, []);
+  const {authUser}=useAuthStore();
+  console.log(authUser)
 
   return (
     <>
 
     <Header />
+    <Toaster />
     <Routes>
       <Route path="/" element={<Navigate to="/home" />} ></Route>
       <Route path="/home" element={authUser ?<Home/>:<Navigate to="/login" />} ></Route>
-      <Route path="/login" element={<ChatBox />} />
+      <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<Signup />} />
       <Route path="/chat/health" element={authUser ?<Health/>:<Navigate to="/login" />} />
       <Route path="/chat/govt-scheme" element={authUser ?<GovtScheme/>:<Navigate to="/login" />} />

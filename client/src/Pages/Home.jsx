@@ -1,8 +1,15 @@
 import modes from "../data/modesData"
 import "./home.css"
-
+import { useNavigate } from "react-router-dom";
 
 export default function Home(){
+  const navigate = useNavigate();
+
+  const handleClick = (val) => {
+    navigate(val);
+  };
+
+
     return (
         <div class="flex flex-row justify-center items-center min-h-screen home-box bg-gray-900">
           <div class="grid grid-cols-1 md:grid-cols-2 gap-8 p-6">
@@ -30,8 +37,9 @@ export default function Home(){
                     </div>
       
                     <div class="card-actions mt-4 flex justify-end">
-                      <button class="btn border-0 bg-blue-600 hover:bg-blue-700 text-white font-medium px-5 py-2 rounded-xl transition duration-300 shadow-md">
-                        Navigate
+                      <button class="btn border-0 bg-blue-600 hover:bg-blue-700 text-white font-medium px-5 py-2 rounded-xl transition duration-300 shadow-md" onClick={()=>{handleClick(mode.navigate)
+                      }}>
+                        Use This
                       </button>
                     </div>
                   </div>
