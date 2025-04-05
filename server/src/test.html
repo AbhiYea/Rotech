@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="map" style="height:500px; width: 500px;"></div>
+    <script>
+
+        //amenity = place_of_worship, hospital
+        //office = government
+
+        navigator.geolocation.getCurrentPosition(success);
+
+        function success(pos) {
+            crd = pos.coords;
+            console.log(crd.latitude, crd.longitude);
+
+
+            var map = L.map('map', {
+                center: [crd.latitude, crd.longitude],
+                zoom: 16
+            });
+
+
+            L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png?{foo}', { foo: 'bar', attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors' }).addTo(map);
+            var marker = L.marker([crd.latitude, crd.longitude]).addTo(map);
+            marker.bindPopup();
+
+            const query = `
+                        [out:json];
+                        node
+                        [amenity=place_of_worship]
+                        [religion=hindu]
+                        (around:2000, ${crd.latitude}, ${crd.longitude});
+                        out;
+                        `;
+
+            console.log(query);
+
+            const placeIcon = L.icon({
+                iconUrl: 'https://img.icons8.com/?size=100&id=IuvTAT7Ip5aU&format=png&color=#FF5349',
+                iconSize: [30, 30],
+                iconAnchor: [15, 30],
+                popupAnchor: [0, -30]
+            });
+
+            fetch('https://overpass-api.de/api/interpreter', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: `data=${encodeURIComponent(query)}`
+            })
+                .then(res => res.json())
+                .then(data => {
+                    data.elements.forEach(place => {
+                        const lat = place.lat;
+                        const lon = place.lon;
+                        const name = place.tags?.name || "Unnamed";
+
+                        console.log(name, lat, lon);
+
+                        L.marker([lat, lon], { icon: placeIcon })
+                            .addTo(map)
+                            .bindPopup(name);
+                    });
+                })
+                .catch(err => console.error("Fetch error:", err));
+
+                var marker2 = L.marker([12.9625258, 77.5656883]).addTo(map);
+                marker2.bindPopup()
+
+        }
+
+
+    </script>
+</body>
+
+</html>
