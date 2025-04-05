@@ -1,8 +1,12 @@
 import logo from "../Assets/login.png"
+<<<<<<< Updated upstream
 
+=======
+import "./signup.css"
+>>>>>>> Stashed changes
 export default function Signup(){
     return (
-        <div class="flex justify-center items-center min-h-screen bg-gray-900">
+        <div class="flex justify-center items-center main-signup min-h-screen main-signup bg-gray-900">
             <div class="flex flex-row bg-gray-800 rounded-xl p-8  shadow-[0_0_40px_rgba(249,115,22,0.7)] space-x-6">
             
             {/*Image*/}

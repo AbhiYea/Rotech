@@ -1,10 +1,12 @@
 import useAuthState from "../GlobalState/auth.state.js"
 import logo from "../Assets/login.png"
-
+import "./login.css"
+import { useEffect } from "react";
 export default function Login(){ 
 
+
     return (
-        <div class="flex justify-center items-center min-h-  bg-gray-900">
+        <div class="flex justify-center items-center min-h- main-login bg-gray-900">
             <div class="flex flex-row bg-gray-800 rounded-xl my-37 mr-24 p-8 shadow-[0_0_40px_rgba(59,130,246,0.7)] space-x-6">
             
             {/*Image section*/}

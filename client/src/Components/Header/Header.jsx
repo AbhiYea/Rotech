@@ -1,5 +1,5 @@
 import logo from "../../Assets/logo-2.png"
-
+import "./header.css"
 export default function Header() {
   return (
     <header class="shadow-lg sticky z-50 top-0">
@@ -10,7 +10,7 @@ export default function Header() {
           <a href="/" class="flex items-center">
             <img
               src={logo}
-              class="mr-3 h-10"
+              class="mr-3 h-10 imageDa"
               alt="Logo"
             />
           </a>
