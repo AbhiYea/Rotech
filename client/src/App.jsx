@@ -20,8 +20,10 @@ import useAuthStore from "./GlobalState/auth.state.js"
 import About from "./Pages/About.jsx"
 
 export default function App(){
-  const {authUser}=useAuthStore();
-  console.log(authUser)
+  const {authUser,check}=useAuthStore();
+  useEffect(()=>{
+    check();
+  },[])
 
   return (
     <>

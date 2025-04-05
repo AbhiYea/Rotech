@@ -12,7 +12,14 @@ router.post("/signup",handleSignup)
 
 router.post("/logout",logout)
 
-
+router.get("/check",async(req,res)=>{
+    const token=req.cookies.token
+    if(token){
+        return res.json({message:"Done"})
+    }else{
+        return res.json({message:"gone"})
+    }
+})
 
 
 export default router

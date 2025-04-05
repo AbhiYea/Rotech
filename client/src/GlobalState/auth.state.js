@@ -11,7 +11,7 @@ const useAuthStore=create((set)=>({
         try {
             console.log(data)
             const res=await axiosInstance.post("/login",data)
-            if(res.data.message==="No User Found"){
+            if(res.data.message==="No User Found" || res.data.message==="Invalid Credentials"){
                 toast.error(res.data.message)
             }
             else{
@@ -47,6 +47,16 @@ const useAuthStore=create((set)=>({
             toast.success("Logged out Successfully")
         } catch (error) {
             toast.error(error.response.data.message)
+        }
+
+    },
+    check:async()=>{
+        const res=axiosInstance("/check")
+        if(res.message==="Done"){
+            set({authUser:true})
+        }
+        else{
+            set({authUser:true})
         }
 
     }
