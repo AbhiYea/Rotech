@@ -15,7 +15,7 @@ export default function Footer() {
           </span>
 
           <div className="flex justify-center mt-4 space-x-6 sm:mt-0 pr-52">
-            <a href="#" className="text-gray-500 hover:text-white">
+            <a href="https://discord.gg/59hKJzBZ" className="text-gray-500 hover:text-white">
               <svg
                 className="w-6 h-6"
                 aria-hidden="true"
@@ -28,7 +28,7 @@ export default function Footer() {
               <span className="sr-only">Discord</span>
             </a>
 
-            <a href="#" className="text-gray-500 hover:text-white">
+            <a href="https://x.com/DhruvSahu550" className="text-gray-500 hover:text-white">
               <svg
                 className="w-6 h-6"
                 aria-hidden="true"
@@ -45,7 +45,7 @@ export default function Footer() {
               <span className="sr-only">Twitter</span>
             </a>
 
-            <a href="#" className="text-gray-500 hover:text-white">
+            <a href="https://github.com/AbhiYea/Rotech" className="text-gray-500 hover:text-white">
               <svg
                 className="w-6 h-6"
                 aria-hidden="true"

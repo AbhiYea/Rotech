@@ -27,11 +27,11 @@ const useAuthStore=create((set)=>({
 
 
     signup: async (data)=>{
-
+        if(!data.fullName || !data.email || !data.password){
+            return toast.error("All fields Required")
+        }
         try {
-            console.log("hi")
             const res=await axiosInstance.post("/signup",data)
-            console.log(authUser)
             set({authUser:res.data})
             toast.success("Account Created Succesfully");
         } catch (error) {
