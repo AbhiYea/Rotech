@@ -73,3 +73,12 @@ export const handleLogout= async (req,res)=>{
         console.log("Error in handleLogout controller")
     }
 }
+
+export const logout=(req,res)=>{
+    try {
+        res.cookie("token","",{maxAge:0})
+        res.status(200).json({message:"Logged out successfully"})
+    } catch (error) {
+        res.status(500).json({message:"Internal Server Error"})
+    }
+}

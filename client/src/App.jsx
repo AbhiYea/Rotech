@@ -17,6 +17,7 @@ import ChatBox from "./Components/Chatty.jsx"
 import { GoogleGenAI } from '@google/genai';
 import { Toaster } from "react-hot-toast"
 import useAuthStore from "./GlobalState/auth.state.js"
+import About from "./Pages/About.jsx"
 
 export default function App(){
   const {authUser}=useAuthStore();
@@ -30,14 +31,15 @@ export default function App(){
     <Routes>
       <Route path="/" element={<Navigate to="/home" />} ></Route>
       <Route path="/home" element={authUser ?<Home/>:<Navigate to="/login" />} ></Route>
-      <Route path="/login" element={<Login />} />
-      <Route path="/signup" element={<Signup />} />
+      <Route path="/login" element={authUser?<Navigate to="/home" />:<Login />} />
+      <Route path="/signup" element={authUser?<Navigate to="/home" />:<Signup />} />
       <Route path="/chat/health" element={authUser ?<Health/>:<Navigate to="/login" />} />
       <Route path="/chat/govt-scheme" element={authUser ?<GovtScheme/>:<Navigate to="/login" />} />
       <Route path="/chat/religious" element={authUser ?<Religious/>:<Navigate to="/login" />} />
       <Route path="/chat/order-food" element={authUser ?<Food/>:<Navigate to="/login" />} />
       <Route path="/chat/order" element={authUser ?<Amazon/>:<Navigate to="/login" />} />
       <Route path="/chat/social" element={authUser ?<Social/>:<Navigate to="/login" />} />
+      <Route path="/about" element={<About/>} />
     </Routes>
     <Footer />
     </>
