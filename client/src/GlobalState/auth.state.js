@@ -1,7 +1,7 @@
 import {create} from "zustand"
 
 const useAuthState=create((set)=>({
-    authUser:null,
+    authUser:true,
     isLoggingIn:false,
     isSigningUp:false
 }))

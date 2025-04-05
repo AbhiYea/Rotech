@@ -1,0 +1,11 @@
+.main-boxy{
+    background-color: transparent;
+    width: 80vw;
+    border: 2px solid gray;
+    border-radius: 10px;
+    margin-left: 145px;
+    height: 80vh;
+}
+input{
+    color: #1E1E2F;
+}

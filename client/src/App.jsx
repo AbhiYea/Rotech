@@ -13,9 +13,10 @@ import useAuthState from "./GlobalState/auth.state.js"
 import {askGemini} from "./LLM/gemini.jsx"
 import { useEffect, useState } from "react"
 import Footer from "./Components/Footer/Footer.jsx"
+import ChatBox from "./Components/Chatty.jsx"
 import { GoogleGenAI } from '@google/genai';
 export default function App(){
-  const {authUser}=useAuthState
+  const {authUser}=useAuthState()
 
   const [response, setResponse] = useState("Loading AI response...");
   useEffect(() => {
@@ -35,13 +36,12 @@ export default function App(){
 
   return (
     <>
-<<<<<<< Updated upstream
-=======
+
     <Header />
->>>>>>> Stashed changes
     <Routes>
+      <Route path="/" element={<Navigate to="/home" />} ></Route>
       <Route path="/home" element={authUser ?<Home/>:<Navigate to="/login" />} ></Route>
-      <Route path="/login" element={<Login />} />
+      <Route path="/login" element={<ChatBox />} />
       <Route path="/signup" element={<Signup />} />
       <Route path="/chat/health" element={authUser ?<Health/>:<Navigate to="/login" />} />
       <Route path="/chat/govt-scheme" element={authUser ?<GovtScheme/>:<Navigate to="/login" />} />

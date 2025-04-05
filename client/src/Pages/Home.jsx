@@ -1,7 +1,10 @@
 import modes from "../data/modesData"
+import "./home.css"
+
+
 export default function Home(){
     return (
-        <div class="flex flex-row justify-center items-center min-h-screen bg-gray-900">
+        <div class="flex flex-row justify-center items-center min-h-screen home-box bg-gray-900">
           <div class="grid grid-cols-1 md:grid-cols-2 gap-8 p-6">
             {modes.map((mode) => {
               return (
@@ -12,7 +15,7 @@ export default function Home(){
                 >
                   <figure class="w-1/3">
                     <img
-                      class="h-full w-full object-cover"
+                      class="h-full w-full object-cover card-image"
                       src={mode.img}
                       alt="image"
                     />
