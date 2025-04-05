@@ -1,58 +1,72 @@
-import { useEffect, useRef, useState } from "react";
-import "./chatty.css"
+import { useState, useRef, useEffect } from "react";
+import { GoogleGenAI } from "@google/genai";
+import "./chatty.css";
+
+const ai = new GoogleGenAI({ apiKey: "AIzaSyD78X8dLdP1G9QWCuEcupZtWfgNWEhO7YU" });
+
 export default function ChatBox() {
   const [messages, setMessages] = useState([
     { sender: "bot", text: "Hey there 👋, how can I help you today?" },
   ]);
   const [input, setInput] = useState("");
   const lastMessageRef = useRef(null);
+
   useEffect(() => {
-      if (lastMessageRef.current) {
-        lastMessageRef.current.scrollIntoView({ behavior: "smooth" });
-      }
-    }, [messages]);
-  const handleSend = () => {
+    if (lastMessageRef.current) {
+      lastMessageRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [messages]);
+
+  const handleSend = async () => {
     if (!input.trim()) return;
-    
+
     const userMsg = { sender: "user", text: input };
     setMessages((prev) => [...prev, userMsg]);
+    setInput("");
 
-    // Replace this with Gemini/LLM response
-    setTimeout(() => {
+    try {
+        const result = await ai.models.generateContent({
+            model: "gemini-2.0-flash",
+            contents: [{ role: "user", parts: [{ text: input }] }],
+          });
+        console.log(result.text)
+          const botReply = await result.text ; ;
+
       setMessages((prev) => [
         ...prev,
-        {
-          sender: "bot",
-          text: `You said: "${input}" — that's interesting! 🤖`,
-        },
+        { sender: "bot", text: botReply || "No response from AI 🤖" },
       ]);
-    }, 600);
-
-    setInput("");
+    } catch (err) {
+      console.error(err);
+      setMessages((prev) => [
+        ...prev,
+        { sender: "bot", text: "Error getting response 😢" },
+      ]);
+    }
   };
 
   return (
-    <div className="flex flex-col main-boxy  h-screen  bg-[#f7f7f8]">
-      <div className="flex-grow overflow-y-auto px-4 py-6  space-y-4">
-      {messages.map((msg, i) => (
-  <div
-    key={i}
-    ref={i === messages.length - 1 ? lastMessageRef : null}
-    className={`flex ${
-      msg.sender === "user" ? "justify-end" : "justify-start"
-    }`}
-  >
-    <div
-      className={`rounded-xl px-4 py-3 max-w-[80%] text-sm shadow-md ${
-        msg.sender === "user"
-          ? "bg-blue-600 text-white"
-          : "bg-[#e5e5ea] text-gray-900"
-      }`}
-    >
-      {msg.text}
-    </div>
-  </div>
-))}
+    <div className="flex flex-col main-boxy h-screen bg-[#f7f7f8]">
+      <div className="flex-grow overflow-y-auto px-4 py-6 space-y-4">
+        {messages.map((msg, i) => (
+          <div
+            key={i}
+            ref={i === messages.length - 1 ? lastMessageRef : null}
+            className={`flex ${
+              msg.sender === "user" ? "justify-end" : "justify-start"
+            }`}
+          >
+            <div
+              className={`rounded-xl px-4 py-3 max-w-[80%] text-sm shadow-md ${
+                msg.sender === "user"
+                  ? "bg-blue-600 text-white"
+                  : "bg-[#e5e5ea] text-gray-900"
+              }`}
+            >
+              {msg.text}
+            </div>
+          </div>
+        ))}
       </div>
 
       <div className="p-4 border-t bg-white flex gap-2">

@@ -1,8 +1,22 @@
-import {create} from "zustand"
+import { create } from "zustand";
 
+const useMessageState = create((set) => ({
+  religious: [],
+  health: [],
+  food: [],
+  govt: [],
+  amazon: [],
+  social: [],
 
-const useMessageState=create((set)=>({
-    religious:{user:}
-}))
+  addMessage: (mode, message) =>
+    set((state) => ({
+      [mode]: [...state[mode], message],
+    })),
 
-export default useAuthState
+  clearMessages: (mode) =>
+    set(() => ({
+      [mode]: [],
+    })),
+}));
+
+export default useMessageState;
