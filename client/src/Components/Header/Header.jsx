@@ -1,3 +1,5 @@
+import logo from "../../Assets/logo-2.png"
+
 export default function Header() {
   return (
     <header class="shadow-lg sticky z-50 top-0">
@@ -7,18 +9,17 @@ export default function Header() {
           {/*Logo*/}
           <a href="/" class="flex items-center">
             <img
-              src="rotech-project/src/assets/logo.png "
+              src={logo}
               class="mr-3 h-10"
               alt="Logo"
             />
-            <span class="self-center text-xl font-semibold whitespace-nowrap text-white">Sahayak</span>
           </a>
 
           {/*Buttons*/}
           <div class="flex items-center lg:order-2 space-x-2">
             <a
               href="#"
-              class="text-sm px-4 py-2 rounded-lg font-medium bg-white text-gray-800 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-300 transition"
+              class="text-sm px-4 py-2 rounded-lg font-medium bg-blue-600 text-white hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-300 transition"
             >
               Log In
             </a>
