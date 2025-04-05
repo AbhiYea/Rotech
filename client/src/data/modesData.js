@@ -36,7 +36,7 @@ const modes = [
   },
   {
     img: amazon,
-    title: "Amazon Order Assist",
+    title: "Online Order Assist",
     desc: "Shop on Amazon with ease — search, add to cart, and place orders using simplified instructions and AI guidance.",
     button: "/pages/mode/Amazon.jsx",
     navigate:"/chat/order"
@@ -44,7 +44,7 @@ const modes = [
   {
     img: social,
     title: "Social Connect",
-    desc: "Stay connected with your family and friends via WhatsApp, Facebook, or video calls — all simplified for you.",
+    desc: "Stay connected with the people around you by joining different social clubs and activities!",
     button: "/pages/mode/Social.jsx",
     navigate:"/chat/social"
   },
